@@ -1,4 +1,4 @@
-## the-reef (https://github.com/tarah-s/the-reef)
+## the-reef (https://github.com/tarah-s/aframe-the-reef)
 
 A-Frame coral reef builder example for WebVR
 
