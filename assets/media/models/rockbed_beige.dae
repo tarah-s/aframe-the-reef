@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset><contributor><author></author><authoring_tool>FBX COLLADA exporter</authoring_tool><comments></comments></contributor><created>2016-11-06T00:11:27Z</created><keywords></keywords><modified>2016-11-06T00:11:27Z</modified><revision></revision><subject></subject><title></title><unit meter="1.000000" name="centimeter"></unit><up_axis>Y_UP</up_axis></asset>
+  <library_materials>
+    <material id="afa2a0" name="afa2a0">
+      <instance_effect url="#afa2a0-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="afa2a0-fx" name="afa2a0">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.686275  0.635294 0.627451 1.000000</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.002353  0.002353 0.002353 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">29.948882</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="Icosahedron-lib" name="IcosahedronMesh">
+      <mesh>
+        <source id="Icosahedron-POSITION">
+          <float_array id="Icosahedron-POSITION-array" count="42">
+-0.262866 -0.118145 0.000000
+0.128337 -0.347963 0.239418
+-1.012467 -0.425325 0.229542
+0.899057 -0.437991 0.000000
+-0.228403 -0.490321 1.014877
+0.065039 -0.154221 0.856448
+0.000000 -0.500568 -0.425325
+0.000000 0.045980 -0.250574
+0.049339 -0.300282 -0.427918
+0.596290 -0.387015 0.262866
+-0.410098 -0.509965 -0.410850
+-0.450361 -0.378864 0.339800
+0.508220 -0.481310 0.932047
+0.549732 -0.363607 0.676984
+</float_array>
+          <technique_common>
+            <accessor source="#Icosahedron-POSITION-array" count="14" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Icosahedron-Normal0">
+          <float_array id="Icosahedron-Normal0-array" count="192">
+-0.577350 0.577350 0.577350
+-0.577350 0.577350 0.577350
+-0.577350 0.577350 0.577350
+0.000000 0.934172 0.356822
+0.000000 0.934172 0.356822
+0.000000 0.934172 0.356822
+0.000000 0.934172 -0.356822
+0.000000 0.934172 -0.356822
+0.000000 0.934172 -0.356822
+-0.577350 0.577350 -0.577350
+-0.577350 0.577350 -0.577350
+-0.577350 0.577350 -0.577350
+-0.934172 0.356822 0.000000
+-0.934172 0.356822 0.000000
+-0.934172 0.356822 0.000000
+0.577350 0.577350 0.577350
+0.577350 0.577350 0.577350
+0.577350 0.577350 0.577350
+-0.356822 0.000000 0.934172
+-0.356822 0.000000 0.934172
+-0.356822 0.000000 0.934172
+-0.934172 -0.356822 0.000000
+-0.934172 -0.356822 0.000000
+-0.934172 -0.356822 0.000000
+-0.356822 0.000000 -0.934172
+-0.356822 0.000000 -0.934172
+-0.356822 0.000000 -0.934172
+0.577350 0.577350 -0.577350
+0.577350 0.577350 -0.577350
+0.577350 0.577350 -0.577350
+0.577350 -0.577350 0.577350
+0.577350 -0.577350 0.577350
+0.577350 -0.577350 0.577350
+0.000000 -0.934172 0.356822
+0.000000 -0.934172 0.356822
+0.000000 -0.934172 0.356822
+0.000000 -0.934172 -0.356822
+0.000000 -0.934172 -0.356822
+0.000000 -0.934172 -0.356822
+0.577350 -0.577350 -0.577350
+0.577350 -0.577350 -0.577350
+0.577350 -0.577350 -0.577350
+0.934172 -0.356822 0.000000
+0.934172 -0.356822 0.000000
+0.934172 -0.356822 0.000000
+0.356822 0.000000 0.934172
+0.356822 0.000000 0.934172
+0.356822 0.000000 0.934172
+-0.577350 -0.577350 0.577350
+-0.577350 -0.577350 0.577350
+-0.577350 -0.577350 0.577350
+-0.577350 -0.577350 -0.577350
+-0.577350 -0.577350 -0.577350
+-0.577350 -0.577350 -0.577350
+0.356822 0.000000 -0.934172
+0.356822 0.000000 -0.934172
+0.356822 0.000000 -0.934172
+0.934172 0.356822 0.000000
+0.934172 0.356822 0.000000
+0.934172 0.356822 0.000000
+0.577350 -0.577350 0.577350
+0.000000 -0.934172 0.356822
+0.577350 -0.577350 0.577350
+0.356822 0.000000 0.934172
+</float_array>
+          <technique_common>
+            <accessor source="#Icosahedron-Normal0-array" count="64" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Icosahedron-UV0">
+          <float_array id="Icosahedron-UV0-array" count="128">
+0.588104 0.500000
+0.750000 0.676208
+0.500000 0.823792
+0.750000 0.676208
+1.000000 0.823792
+0.500000 0.823792
+0.000000 0.823792
+0.250000 0.676208
+0.500000 0.823792
+0.250000 0.676208
+0.411896 0.500000
+0.500000 0.823792
+0.411896 0.500000
+0.588104 0.500000
+0.500000 0.823792
+0.750000 0.676208
+0.911896 0.500000
+1.000000 0.823792
+0.588104 0.500000
+0.750000 0.323792
+0.750000 0.676208
+0.411896 0.500000
+0.500000 0.176208
+0.588104 0.500000
+0.250000 0.676208
+0.250000 0.323792
+0.411896 0.500000
+0.000000 0.823792
+0.088104 0.500000
+0.250000 0.676208
+0.911896 0.500000
+0.750000 0.323792
+1.000000 0.176208
+0.750000 0.323792
+0.500000 0.176208
+1.000000 0.176208
+0.500000 0.176208
+0.250000 0.323792
+0.000000 0.176208
+0.250000 0.323792
+0.088104 0.500000
+0.000000 0.176208
+1.088104 0.500000
+0.911896 0.500000
+1.000000 0.176208
+0.911896 0.500000
+0.750000 0.676208
+0.750000 0.323792
+0.750000 0.323792
+0.588104 0.500000
+0.500000 0.176208
+0.500000 0.176208
+0.411896 0.500000
+0.250000 0.323792
+0.250000 0.323792
+0.250000 0.676208
+0.088104 0.500000
+1.088104 0.500000
+1.000000 0.823792
+0.911896 0.500000
+0.862375 0.257453
+0.862375 0.257453
+0.859021 0.442450
+0.859021 0.442450
+</float_array>
+          <technique_common>
+            <accessor source="#Icosahedron-UV0-array" count="64" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Icosahedron-VERTEX">
+          <input semantic="POSITION" source="#Icosahedron-POSITION"/>
+        </vertices>
+        <polylist count="21" material="afa2a0"><input semantic="VERTEX" offset="0" source="#Icosahedron-VERTEX"/><input semantic="NORMAL" offset="1" source="#Icosahedron-Normal0"/><input semantic="TEXCOORD" offset="2" set="0" source="#Icosahedron-UV0"/><vcount>3 3 3 3 3 3 3 3 3 3 4 4 3 3 3 4 3 3 3 3 3 </vcount><p> 11 0 0 5 1 1 0 2 2 5 3 3 1 4 4 0 5 5 1 6 6 7 7 7 0 8 8 7 9 9 10 10 10 0 11 11 10 12 12 11 13 13 0 14 14 5 15 15 9 16 16 1 17 17 11 18 18 4 19 19 5 20 20 10 21 21 2 22 22 11 23 23 7 24 24 6 25 25 10 26 26 1 27 27 8 28 28 7 29 29 9 30 30 13 62 62 12 60 60 3 32 32 4 33 33 2 34 34 3 35 35 12 61 61 2 36 36 6 37 37 3 38 38 6 39 39 8 40 40 3 41 41 8 42 42 9 43 43 3 44 44 9 45 45 5 46 46 4 47 47 13 63 63 4 48 48 11 49 49 2 50 50 2 51 51 10 52 52 6 53 53 6 54 54 7 55 55 8 56 56 8 57 57 1 58 58 9 59 59 13 62 62 4 31 31 12 60 60</p></polylist>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Corals" name="Corals">
+      <node name="Icosahedron" id="Icosahedron" sid="Icosahedron"><matrix sid="matrix">1.000000 0.000000 0.000000 -0.118200 0.000000 1.000000 0.000000 0.423200 0.000000 0.000000 1.000000 -0.319400 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#Icosahedron-lib"><bind_material><technique_common><instance_material symbol="afa2a0" target="#afa2a0"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <extra><technique profile="MAX3D"><frame_rate>29.970030</frame_rate></technique><technique profile="FCOLLADA"><start_time>0.000000</start_time><end_time>6.666667</end_time></technique></extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Corals"></instance_visual_scene>
+  </scene>
+</COLLADA>

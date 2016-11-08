@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>The Reef - A-Frame coral reef builder example for WebVR</title>
+    <meta name="description" content="The Reef - A-Frame coral reef builder example for WebVR">
+    <script src="assets/js/aframe.min.js"></script>
+    <script src="assets/js/aframe-extras.min.js"></script>
+    <script src="assets/js/aframe-event-set-component.min.js"></script>
+    <script src="assets/js/aframe-look-at-component.min.js"></script>
+    <script src="assets/js/aframe-selection-component.min.js"></script>
+  </head>
+  <body>
+
+    <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js" fog="type: exponential; color: #0894d3; density: 0.06;">
+
+
+        <!-- start: assets -->
+        <a-assets>
+          <!-- start: instructions -->
+          <video id="instructions" autoplay loop="true" src="assets/media/video/the-reef.mp4">
+          <img id="instructions_img" src="assets/media/images/instructions.jpg">
+          <!-- end: instructions -->
+
+          <!-- start: button close -->
+          <img id="button_close" src="assets/media/images/button_close.png">
+          <!-- end: button close -->
+
+          <!-- start: rockbed assets -->
+          <a-asset-item id="small-rocks-1" src="assets/media/models/rocks_1.dae"></a-asset-item>
+          <a-asset-item id="small-rocks-2" src="assets/media/models/rocks_2.dae"></a-asset-item>
+          <!-- end: rockbed assets -->
+
+          <!-- start: coral assets -->
+          <a-asset-item id="plant_green" src="assets/media/models/plant_green.dae"></a-asset-item>
+          <a-asset-item id="grass_green" src="assets/media/models/grass_green.dae"></a-asset-item>
+          <a-asset-item id="rockbed_beige" src="assets/media/models/rockbed_beige.dae"></a-asset-item>
+          <a-asset-item id="coralbed_purple" src="assets/media/models/coralbed_purple.dae"></a-asset-item>
+          <!-- end: coral assets -->
+        </a-assets>
+        <!-- end: assets -->
+
+
+        <!-- start: Sound -->
+        <a-entity position="0 4 0"
+                  sound="src: url(assets/media/sounds/underwater.mp3); autoplay: true; loop: true; volume:1">
+        </a-entity>
+        <!-- end: Sound -->
+
+
+        <!-- start: Camera -->
+          <a-entity id="camera" position="0 .6 4" camera="userHeight: 1" look-controls-enabled look-controls>
+              <a-entity id="cursor" raycaster="objects: .clickable"
+                cursor-visible="enabled: false"
+                cursor="fuse: false;"
+                position="0 0 -1.9"
+                geometry="primitive: ring; radiusInner: 0.07; radiusOuter: 0.10"
+                material="shader: flat; color: #4CC3D9">
+                <a-animation begin="click" easing="ease-in" attribute="scale" fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
+              </a-entity>
+          </a-entity>
+        <!-- end: Camera -->
+
+
+        <!-- start: Scene instructions -->
+        <a-entity id="scene_instructions" visible="true" position="0 0 0" color="#fff">
+          <a-entity geometry="primitive: plane; height: 1.9; width: 2.8;" material="color: #ffffff; src:#instructions_img" position="0 1.85 0">
+            <a-video src="#instructions" width="2.8" height="1.3" position="0 0.35 0.003" material="transparent: true;"></a-video>
+            <a-entity geometry="primitive: plane; height: 0.20; width: 0.20;" material="opacity: 0;" id="button_close"
+              position="1.23 0.85 0.04" class="clickable"
+              event-set__1="_event: click; _target: #scene_instructions; visible: false">
+              <a-image src="#button_close" width="0.20" height="0.20" position="0 0 0" material="transparent: true; opacity: 1"></a-image>
+            </a-entity>
+          </a-entity>
+        </a-entity>
+        <!-- end: Scene instructions -->
+
+        <!-- start: Sky -->
+        <a-sky color="#a4bede"></a-sky>
+        <!-- end: Sky -->
+
+
+        <!-- start: Ocean top -->
+        <a-plane color="#ffffff" position="0 4.5 0" height="11" width="11" rotation="90 90 0" material="opacity:0.4" scale="15 15 15"></a-plane>
+        <a-entity position="0 4 0" color="#b6e8fe">
+          <a-ocean width="50" depth="50" density="40">
+            <a-animation attribute="visible" delay="25000" to="true"></a-animation>
+          </a-ocean>
+        </a-entity>
+        <!-- end: Ocean top -->
+
+
+        <!-- start: Seafloor Shadow -->
+        <a-ocean width="50" depth="50" density="50"  color="#75705e"  position="0 -0.15 0" opacity="0.03">
+         <a-animation attribute="visible" delay="55000" to="true"></a-animation>
+        </a-ocean>
+        <!-- end: Seafloor Shadow -->
+
+
+        <!-- start: Seafloor plane -->
+        <a-plane id="seafloorCoral"  position="0 0 0" rotation="-90 0 0" width="4" height="4" color="#d9d0ae" scale="15 15 15"></a-plane>
+        <!-- end: Seafloor plane -->
+
+
+        <!-- start: Ocean Lighting -->
+        <a-entity light="type: hemisphere; color: #ffffff; groundColor: #000000; intensity: 0.9;" position="25 8 -25"></a-entity>
+        <a-entity light="type: hemisphere; color: #ffffff; groundColor: #000000; intensity: 0.3;" position="25 8 25"></a-entity>
+        <a-entity light="type: ambient; color: #ffffff; intensity: 0.5;" position="25 8 -25"></a-entity>
+        <!-- end: Ocean Lighting -->
+
+
+        <!-- start: Seafloor corals first row rocks -->
+        <a-entity position="3.6 0.1 -3"  collada-model="#small-rocks-2"></a-entity>
+        <a-entity position="2.4 0.1 -3"  collada-model="#small-rocks-1"></a-entity>
+        <a-entity position="1.2 0.1 -3"  collada-model="#small-rocks-2"></a-entity>
+        <a-entity position="0 0.1 -3"    collada-model="#small-rocks-1"></a-entity>
+        <a-entity position="-1.2 0.1 -3" collada-model="#small-rocks-1"></a-entity>
+        <a-entity position="-2.4 0.1 -3" collada-model="#small-rocks-2"></a-entity>
+        <a-entity position="-3.6 0.1 -3" collada-model="#small-rocks-1"></a-entity>
+        <!-- start: Seafloor corals first row rocks -->
+
+
+        <!-- start: Seafloor corals second row rocks -->
+        <a-entity position="2.2 0.1 -5"  collada-model="#small-rocks-1" scale="2 2 2"></a-entity>
+        <a-entity position="0 0.1 -5"    collada-model="#small-rocks-1" scale="2 2 2"></a-entity>
+        <a-entity position="-2.2 0.1 -5" collada-model="#small-rocks-2" scale="2 2 2"></a-entity>
+        <!-- start: Seafloor corals second row rocks -->
+
+
+        <!-- start: Seafloor corals middle row rocks -->
+        <a-entity position="-1.8 0.1 -3.75" collada-model="#small-rocks-2"></a-entity>
+        <a-entity position="-0.65 0.1 -3.75" collada-model="#small-rocks-1"></a-entity>
+        <a-entity position="0.65 0.1 -3.75" collada-model="#small-rocks-2"></a-entity>
+        <a-entity position="1.8 0.1 -3.75" collada-model="#small-rocks-1"></a-entity>
+        <!-- start: Seafloor corals middle row rocks -->
+
+
+        <!-- start: Seafloor corals first row -->
+        <a-entity geometry="primitive: circle; radius: 0.5" material="color: white; opacity:0.2; side: back;" position="3.6 0.1 -3"
+        rotation="90 90 0"
+          event-set__1="_event: mouseenter; material.opacity: 0.4"
+          event-set__2="_event: mouseleave; material.opacity: 0.1"
+          class="generate clickable">
+        </a-entity>
+        <a-entity geometry="primitive: circle; radius: 0.5" material="color: white; opacity:0.2; side: back;" position="2.4 0.1 -3"
+        rotation="90 90 0"
+          event-set__1="_event: mouseenter; material.opacity: 0.4"
+          event-set__2="_event: mouseleave; material.opacity: 0.1"
+          class="generate clickable">
+        </a-entity>
+        <a-entity geometry="primitive: circle; radius: 0.5" material="color: white; opacity:0.2; side: back;" position="1.2 0.1 -3"
+        rotation="90 90 0"
+          event-set__1="_event: mouseenter; material.opacity: 0.4"
+          event-set__2="_event: mouseleave; material.opacity: 0.1"
+          class="generate clickable">
+        </a-entity>
+        <a-entity geometry="primitive: circle; radius: 0.5" material="color: white; opacity:0.2; side: back;" position="0 0.1 -3"
+        rotation="90 90 0"
+          event-set__1="_event: mouseenter; material.opacity: 0.4"
+          event-set__2="_event: mouseleave; material.opacity: 0.1"
+          class="generate clickable">
+        </a-entity>
+        <a-entity geometry="primitive: circle; radius: 0.5" material="color: white; opacity:0.2; side: back;" position="-1.2 0.1 -3"
+        rotation="90 90 0"
+          event-set__1="_event: mouseenter; material.opacity: 0.4"
+          event-set__2="_event: mouseleave; material.opacity: 0.1"
+          class="generate clickable">
+        </a-entity>
+        <a-entity geometry="primitive: circle; radius: 0.5" material="color: white; opacity:0.2; side: back;" position="-2.4 0.1 -3"
+        rotation="90 90 0"
+          event-set__1="_event: mouseenter; material.opacity: 0.4"
+          event-set__2="_event: mouseleave; material.opacity: 0.1"
+          class="generate clickable">
+        </a-entity>
+        <a-entity geometry="primitive: circle; radius: 0.5" material="color: white; opacity:0.2; side: back;" position="-3.6 0.1 -3"
+        rotation="90 90 0"
+          event-set__1="_event: mouseenter; material.opacity: 0.4"
+          event-set__2="_event: mouseleave; material.opacity: 0.1"
+          class="generate clickable">
+        </a-entity>
+        <!-- start: Seafloor corals first row -->
+
+
+        <!-- start: Seafloor corals second row -->
+        <a-entity geometry="primitive: circle; radius: 0.75" material="color: white; opacity:0.2; side: back;" position="2.2 0.1 -5"
+        rotation="90 90 0"
+          event-set__1="_event: mouseenter; material.opacity: 0.4"
+          event-set__2="_event: mouseleave; material.opacity: 0.1"
+          class="generate clickable">
+        </a-entity>
+        <a-entity geometry="primitive: circle; radius: 0.75" material="color: white; opacity:0.2; side: back;" position="0 0.1 -5"
+        rotation="90 90 0"
+          event-set__1="_event: mouseenter; material.opacity: 0.4"
+          event-set__2="_event: mouseleave; material.opacity: 0.1"
+          class="generate clickable">
+        </a-entity>
+        <a-entity geometry="primitive: circle; radius: 0.75" material="color: white; opacity:0.2; side: back;" position="-2.2 0.1 -5"
+        rotation="90 90 0"
+          event-set__1="_event: mouseenter; material.opacity: 0.4"
+          event-set__2="_event: mouseleave; material.opacity: 0.1"
+          class="generate clickable">
+        </a-entity>
+        <!-- start: Seafloor corals second row -->
+
+
+        <!-- start: Seafloor corals middle row -->
+        <a-entity geometry="primitive: circle; radius: 0.4" material="color: white; opacity:0.2; side: back;" position="-1.8 0.1 -3.75" rotation="90 90 0"
+          event-set__1="_event: mouseenter; material.opacity: 0.4"
+          event-set__2="_event: mouseleave; material.opacity: 0.1"
+          class="generate clickable">
+        </a-entity>
+        <a-entity geometry="primitive: circle; radius: 0.4" material="color: white; opacity:0.2; side: back;" position="-0.65 0.1 -3.75" rotation="90 90 0"
+          event-set__1="_event: mouseenter; material.opacity: 0.4"
+          event-set__2="_event: mouseleave; material.opacity: 0.1"
+          class="generate clickable">
+        </a-entity>
+        <a-entity geometry="primitive: circle; radius: 0.4" material="color: white; opacity:0.2; side: back;" position="0.65 0.1 -3.75" rotation="90 90 0"
+          event-set__1="_event: mouseenter; material.opacity: 0.4"
+          event-set__2="_event: mouseleave; material.opacity: 0.1"
+          class="generate clickable">
+        </a-entity>
+        <a-entity geometry="primitive: circle; radius: 0.4" material="color: white; opacity:0.2; side: back;" position="1.8 0.1 -3.75" rotation="90 90 0"
+          event-set__1="_event: mouseenter; material.opacity: 0.4"
+          event-set__2="_event: mouseleave; material.opacity: 0.1"
+          class="generate clickable">
+        </a-entity>
+        <!-- start: Seafloor corals middle row -->
+
+
+
+        <!-- start: Coral Selections -->
+        <a-entity
+          position="-3 0 0"
+          class="clickable"
+          collada-model="#grass_green"
+          picker="on: click; asset: grass_green; size: 0.7"
+          rotation="0 0 0"
+          material="opacity:1"
+          scale="0.7 0.7 0.7">
+            <a-entity geometry="primitive: circle; radius: 1" material="color: white; opacity:0.2; side: back;" position="0 00 0"
+            event-set__1="_event: mouseenter; material.opacity: 0.4"
+            event-set__2="_event: mouseleave; material.opacity: 0.1"
+            rotation="90 90 0">
+            </a-entity>
+          </a-entity>
+          <a-entity
+          position="-1 0 0"
+          class="clickable"
+          collada-model="#rockbed_beige"
+          picker="on: click; asset: rockbed_beige; size: 0.7"
+          rotation="0 -138 0"
+          material="opacity:1"
+          scale="0.7 0.7 0.7">
+            <a-entity geometry="primitive: circle; radius: 1" material="color: white; opacity:0.2; side: back;" position="0 0 0"
+            event-set__1="_event: mouseenter; material.opacity: 0.4"
+            event-set__2="_event: mouseleave; material.opacity: 0.1"
+            rotation="90 90 0">
+            </a-entity>
+          </a-entity>
+          <a-entity
+          position="1 0 0"
+          class="clickable"
+          collada-model="#coralbed_purple"
+          picker="on: click; asset: coralbed_purple; size: 0.7"
+          rotation="0 0 0"
+          material="opacity:1"
+          scale="0.7 0.7 0.7">
+            <a-entity geometry="primitive: circle; radius: 1" material="color: white; opacity:0.2; side: back;" position="0 0 0"
+            event-set__1="_event: mouseenter; material.opacity: 0.4"
+            event-set__2="_event: mouseleave; material.opacity: 0.1"
+            rotation="90 90 0">
+            </a-entity>
+          </a-entity>
+          <a-entity
+          position="3 0 0"
+          class="clickable"
+          collada-model="#plant_green"
+          picker="on: click; asset: plant_green; size: 0.7"
+          rotation="0 -65 0"
+          material="opacity:1"
+          scale="0.7 0.7 0.7">
+            <a-entity geometry="primitive: circle; radius: 1" material="color: white; opacity:0.2; side: back;" position="0 0 0"
+            event-set__1="_event: mouseenter; material.opacity: 0.4"
+            event-set__2="_event: mouseleave; material.opacity: 0.1"
+            rotation="90 90 0">
+            </a-entity>
+          </a-entity>
+          <!-- start: Coral Selections -->
+    </a-scene>
+  </body>
+</html>
+
+
